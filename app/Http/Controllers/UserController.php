@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 
@@ -34,6 +35,12 @@ class UserController extends Controller
                 ->symbols()
             ],
             'password_confirmation' => ['required']
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
         ]);
         
         return redirect('/user')->with('status', "User Registered Successfully");
