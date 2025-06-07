@@ -4,20 +4,10 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Register</h2>
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Please Login</h2>
 
-    <form action="/user/store" method="POST" class="space-y-4">
+    <form action="/user/login" method="POST" class="space-y-4">
         @csrf
-        <div>
-        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-        <input type="text" id="name" name="name" required value="{{old('name')}}"
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-        <span class="text-red-800 text-xs">
-            @error('name')
-            {{$message}}
-            @enderror
-        </span>
-        </div>
 
         <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
@@ -42,28 +32,12 @@
         </div>
 
         <div>
-        <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-        <input type="password" id="password_confirmation" name="password_confirmation" required
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-        <span class="text-red-800 text-xs">
-            @error('password_confirmation')
-            {{$message}}
-            @enderror
-        </span>
-        </div>
-
-        <div>
         <button type="submit"
                 class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
-            Register
+            Login
         </button>
         </div>
     </form>
-
-    <p class="text-sm text-center text-gray-600 mt-6">
-        Already have an account?
-        <a href="/user/login" class="text-indigo-600 hover:underline">Login</a>
-    </p>
     </div>
 </body>
 

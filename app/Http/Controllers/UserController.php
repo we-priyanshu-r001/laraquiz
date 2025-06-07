@@ -7,8 +7,16 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    public function index(){
+        return view('pages.dashboard');
+    }
+
     public function register(){
         return view('pages.user.register');
+    }
+
+    public function login(){
+        return view('pages.user.login');
     }
 
     public function store(Request $request){
@@ -28,6 +36,6 @@ class UserController extends Controller
             'password_confirmation' => ['required']
         ]);
         
-        return $request->input();
+        return redirect('/user')->with('status', "User Registered Successfully");
     }
 }
