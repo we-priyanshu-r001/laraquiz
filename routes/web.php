@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('welcome');
+// Landing Page Route
+Route::get('/', LandingController::class);
+
+// User Routes
+Route::prefix('user')->group(function(){
+    Route::get('/register', [UserController::class, 'register']);
+    Route::post('/store',[UserController::class, 'store']);
+
 });
