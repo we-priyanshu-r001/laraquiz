@@ -13,9 +13,7 @@
         <input type="text" id="name" name="name" required value="{{old('name')}}"
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
         <span class="text-red-800 text-xs">
-            @error('name')
-            {{$message}}
-            @enderror
+            {{$errors->user->first('email')}}
         </span>
         </div>
 
@@ -24,9 +22,7 @@
         <input type="email" id="email" name="email" required value="{{old('email')}}"
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
         <span class="text-red-800 text-xs">
-            @error('email')
-            {{$message}}
-            @enderror
+            {{$errors->user->first('email')}}
         </span>
         </div>
 
@@ -35,9 +31,7 @@
         <input type="password" id="password" name="password" required
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
         <span class="text-red-800 text-xs">
-            @error('password')
-            {{$message}}
-            @enderror
+            {{$errors->user->first('password')}}
         </span>
         </div>
 
@@ -46,9 +40,7 @@
         <input type="password" id="password_confirmation" name="password_confirmation" required
                 class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
         <span class="text-red-800 text-xs">
-            @error('password_confirmation')
-            {{$message}}
-            @enderror
+            {{$errors->user->first('password_confirmation')}}
         </span>
         </div>
 
