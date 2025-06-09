@@ -6,7 +6,7 @@
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
     <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Register</h2>
 
-    <form action="/user/store" method="POST" class="space-y-4">
+    <form action="{{route('user.register')}}" method="POST" class="space-y-4">
         @csrf
         <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
@@ -54,7 +54,7 @@
 
     <p class="text-sm text-center text-gray-600 mt-6">
         Already have an account?
-        <a href="/user/login" class="text-indigo-600 hover:underline">Login</a>
+        <a href="{{route('show.user.login')}}" class="text-indigo-600 hover:underline">Login</a>
     </p>
     </div>
 </body>

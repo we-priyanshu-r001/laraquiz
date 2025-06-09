@@ -6,7 +6,7 @@
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
     <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Please Login</h2>
 
-    <form action="/user/login" method="POST" class="space-y-4">
+    <form action="{{route('user.login')}}" method="POST" class="space-y-4">
         @csrf
 
         <div>

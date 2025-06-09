@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
     public function index(){
+        return session()->all();
         return view('pages.dashboard');
     }
 
-    public function register(){
+    public function showRegister(){
         return view('pages.user.register');
     }
 
-    public function login(){
+    public function showLogin(){
         return view('pages.user.login');
     }
 
-    public function store(Request $request){
+    public function register(Request $request){
 
         $validated = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
@@ -39,8 +41,6 @@ class UserController extends Controller
             'password_confirmation' => ['required']
         ])->validateWithBag('user');
 
-        return $validated;
-
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
@@ -48,6 +48,23 @@ class UserController extends Controller
         ]);
 
         
-        return redirect('/user')->with('status', "User Registered Successfully");
+        return redirect()->route('user.dashboard')->with('status', "User Registered Successfully");
+    }
+
+    public function login(Request $request){
+        $validated = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'] 
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!Hash::check($request->password, $user->password)){
+            return back()->withErrors(['password' => 'Incorrect Password']);
+        }
+
+        session(['user_id' => $user->id]);
+
+        return redirect()->route('user.dashboard');
     }
 }

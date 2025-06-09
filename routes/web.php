@@ -9,9 +9,9 @@ Route::get('/', LandingController::class);
 
 // User Routes
 Route::prefix('user')->group(function(){
-    Route::get('/', [UserController::class, 'index']);
-    Route::get('/register', [UserController::class, 'register']);
-    Route::get('/login', [UserController::class, 'login']);
-    Route::post('/store',[UserController::class, 'store']);
-
+    Route::get('/', [UserController::class, 'index'])->name('user.dashboard');
+    Route::get('/register', [UserController::class, 'showRegister'])->name('show.user.register');
+    Route::post('/register',[UserController::class, 'register'])->name('user.register');
+    Route::get('/login', [UserController::class, 'showLogin'])->name('show.user.login');
+    Route::post('/login', [UserController::class, 'login'])->name('user.login');
 });
