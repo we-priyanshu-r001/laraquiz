@@ -11,8 +11,8 @@ use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
     public function index(){
-        return session()->all();
-        return view('pages.dashboard');
+        // return session()->all();
+        return view('pages.user.dashboard');
     }
 
     public function showRegister(){
@@ -58,7 +58,7 @@ class UserController extends Controller
         ]);
 
         
-        return redirect()->route('user.dashboard')->with('status', "User Registered Successfully");
+        return redirect()->route('show.user.dashboard')->with('status', "User Registered Successfully");
     }
 
     public function login(Request $request){
@@ -79,6 +79,6 @@ class UserController extends Controller
 
         session(['user_id' => $user->id]);
 
-        return redirect()->route('user.dashboard');
+        return redirect()->route('show.user.dashboard');
     }
 }

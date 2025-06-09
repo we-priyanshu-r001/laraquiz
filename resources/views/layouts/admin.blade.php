@@ -5,7 +5,6 @@
     @include('partials.head')
     
     <body>
-        @include('partials.header')
         @yield('body_content')
     </body>
     

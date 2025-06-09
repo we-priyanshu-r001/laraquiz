@@ -5,14 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CustomAuth;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 // Landing Page Route
-Route::get('/', LandingController::class);
+Route::get('/', LandingController::class)->name('show.landing');
 
 // User Routes
 Route::prefix('user')->group(function(){
-    Route::get('/', [UserController::class, 'index'])->name('user.dashboard')->middleware(CustomAuth::class);
-    Route::get('/register', [UserController::class, 'showRegister'])->name('show.user.register');
+    Route::get('/', [UserController::class, 'index'])->name('show.user.dashboard')->middleware(CustomAuth::class);
+    Route::get('/register', [UserController::class, 'showRegister'])->name('show.user.register')->middleware(RedirectIfAuthenticated::class);
     Route::post('/register',[UserController::class, 'register'])->name('user.register');
     Route::get('/login', [UserController::class, 'showLogin'])->name('show.user.login');
     Route::post('/login', [UserController::class, 'login'])->name('user.login');

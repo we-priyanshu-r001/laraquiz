@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CustomAuth
+class RedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class CustomAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session()->has('user_id')){
-            return redirect()->route('show.user.login')->withErrors(['Please login']);
-        } 
-        
+        if(session()->has('user_id')){
+            return redirect()->route('show.user.dashboard');
+        }
         return $next($request);
     }
 }
