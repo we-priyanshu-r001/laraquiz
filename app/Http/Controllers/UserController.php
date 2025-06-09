@@ -25,6 +25,7 @@ class UserController extends Controller
 
     public function register(Request $request){
 
+        
         $validated = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
             "email" => ['required', 'email', "max:255"],
@@ -39,8 +40,17 @@ class UserController extends Controller
                 ->symbols()
             ],
             'password_confirmation' => ['required']
-        ])->validateWithBag('user');
+            ])->validateWithBag('user');
+        
+        // Check if email exists
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            return back()
+                ->withErrors(['email' => 'An account with this email already exists'], 'user')
+                ->withInput();
+        }
 
+        // Create a new user
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
@@ -58,6 +68,10 @@ class UserController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
+
+        if(!$user){
+            return back()->withErrors(['email' => 'There\'s no account with this email'])->withInput();
+        }
 
         if(!Hash::check($request->password, $user->password)){
             return back()->withErrors(['password' => 'Incorrect Password']);

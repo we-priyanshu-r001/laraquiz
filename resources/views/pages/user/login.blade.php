@@ -38,6 +38,11 @@
         </button>
         </div>
     </form>
+
+    <p class="text-sm text-center text-gray-600 mt-6">
+        Don't have an account?
+        <a href="{{route('show.user.register')}}" class="text-indigo-600 hover:underline">Register</a>
+    </p>
     </div>
 </body>
 
