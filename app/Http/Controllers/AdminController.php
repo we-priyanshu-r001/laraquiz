@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::where('role', 'not like', 'admin')->get();
         return view('pages.adminDashboard', compact('users'));
     }
 }

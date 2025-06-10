@@ -72,13 +72,23 @@ class UserController extends Controller
         if(!$user){
             return back()->withErrors(['email' => 'There\'s no account with this email'])->withInput();
         }
-
+        
         if(!Hash::check($request->password, $user->password)){
-            return back()->withErrors(['password' => 'Incorrect Password']);
+            return back()->withErrors(['password' => 'Incorrect Password'])->withInput();
+        }
+        
+        $request->session(['user_id' => $user->id]);
+
+        if($user->role == "admin"){
+            return redirect()->route('show.admin.dashboard');
         }
 
-        session(['user_id' => $user->id]);
-
         return redirect()->route('show.user.dashboard');
+    }
+
+    public function logout(Request $request){
+        $request->session()->forget('user_id');
+
+        return redirect()->route('show.user.login');
     }
 }
