@@ -77,7 +77,7 @@ class UserController extends Controller
             return back()->withErrors(['password' => 'Incorrect Password'])->withInput();
         }
         
-        $request->session(['user_id' => $user->id]);
+        session(['user_id' => $user->id]);
 
         if($user->role == "admin"){
             return redirect()->route('show.admin.dashboard');
@@ -87,6 +87,7 @@ class UserController extends Controller
     }
 
     public function logout(Request $request){
+        // return $request;
         $request->session()->forget('user_id');
 
         return redirect()->route('show.user.login');

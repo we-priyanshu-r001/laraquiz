@@ -11,7 +11,12 @@
         <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
         <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
         <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
-        <a href="#" class="text-gray-700 hover:text-red-600 font-medium">Logout</a>    
+        <form action="{{route('user.logout')}}" method="POST">
+            @csrf
+            <button class="text-gray-700 hover:text-red-600 font-medium" type="submit" name="logout">
+                Logout    
+            </button>
+        </form>
     </div>
 
     <!-- Mobile Menu Button -->

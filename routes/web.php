@@ -19,6 +19,7 @@ Route::prefix('user')->group(function(){
     Route::post('/register',[UserController::class, 'register'])->name('user.register');
     Route::get('/login', [UserController::class, 'showLogin'])->name('show.user.login')->middleware(RedirectIfAuthenticated::class);
     Route::post('/login', [UserController::class, 'login'])->name('user.login');
+    Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 });
 
 Route::get('admin_dashboard', [AdminController::class, 'index'])->name('show.admin.dashboard')->middleware(AllowIfAdmin::class);
