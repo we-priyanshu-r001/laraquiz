@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FlushSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
@@ -19,9 +20,7 @@ Route::prefix('user')->group(function(){
     Route::post('/login', [UserController::class, 'login'])->name('user.login');
 });
 
-Route::get('admin_dashboard', function(){
-    return view('pages.adminDashboard');
-});
+Route::get('admin_dashboard', [AdminController::class, 'index']);
 
 // Dev Routes
 Route::get('/invalidate', FlushSessionController::class);
