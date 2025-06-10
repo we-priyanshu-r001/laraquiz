@@ -12,6 +12,6 @@ class FlushSessionController extends Controller
     public function __invoke(Request $request)
     {
         $request->session()->invalidate();
-        return redirect()->route('user.dashboard');
+        return redirect()->route('show.user.dashboard');
     }
 }
