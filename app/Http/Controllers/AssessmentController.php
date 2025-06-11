@@ -17,19 +17,12 @@ class AssessmentController extends Controller
     }
 
     public function create(Request $request){
-        // return $request;
 
-        // dd(var_dump(session()->get('user_id')));
         $validated = $request->validate([
             'title' => ['required', 'max:255'],
             'assessment' => ['string'],
             'category' => ['required', 'max:10']
         ]);
-
-        // unset($validated['category']);
-        // dd($validated);
-        // dd(session()->get('user_id'));
-        // dd(session()->get('user_id'));
 
         $assessment = Assessment::create([
             'title' => $validated['title'],
@@ -37,13 +30,9 @@ class AssessmentController extends Controller
             'user_id' => session()->get('user_id')
         ]);
 
-        // dd('data', $assessment);
-
-
         $assessment->categories()->attach($validated['category']);
 
         return redirect()->route('show.user.dashboard');
 
-        // dd($assessment);
     }
 }

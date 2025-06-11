@@ -10,6 +10,7 @@ use App\Http\Middleware\AllowIfAdmin;
 use App\Http\Middleware\CustomAuth;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Models\Assessment;
+use App\Models\Category;
 
 // Landing Page Route
 Route::get('/', LandingController::class)->name('show.landing')->middleware(RedirectIfAuthenticated::class);
@@ -34,6 +35,14 @@ Route::prefix('assessment')->group(function(){
 // Admin Routes
 Route::get('admin_dashboard', [AdminController::class, 'index'])->name('show.admin.dashboard')->middleware(AllowIfAdmin::class);
 
+
+// Category Routes
+Route::get('/category/{id}', function($id){
+
+    $category = Category::with('assessments')->findOrFail($id);
+    return view('pages.assessment.category', compact('category'));
+
+})->name('assessment.category');
 
 
 

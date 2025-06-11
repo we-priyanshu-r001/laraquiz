@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,11 +22,16 @@ class UserController extends Controller
         // Eager Loading user with assements
         $user = User::with('assessments')->findOrFail($user_id);
 
+        $categories = Category::all();
+        // if(!$categories){
+        //     $categories = ['null'];
+        // }
+
         if(!$user){
             return redirect()->route('show.user.login')->withErrors('Some unknown error occurred');
         }
 
-        return view('pages.user.dashboard', compact('user'));
+        return view('pages.user.dashboard', compact('user', 'categories'));
     }
 
     public function showRegister(){
