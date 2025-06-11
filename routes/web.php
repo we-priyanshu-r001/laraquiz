@@ -10,7 +10,7 @@ use App\Http\Middleware\CustomAuth;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 // Landing Page Route
-Route::get('/', LandingController::class)->name('show.landing');
+Route::get('/', LandingController::class)->name('show.landing')->middleware(RedirectIfAuthenticated::class);
 
 // User Routes
 Route::prefix('user')->group(function(){

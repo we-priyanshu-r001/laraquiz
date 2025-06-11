@@ -11,8 +11,21 @@ use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
     public function index(){
-        // return session()->all();
-        return view('pages.user.dashboard');
+    
+        $user_id = session()->get('user_id');
+
+        if(!$user_id){
+            return redirect()->route('show.user.login')->withErrors('Please Login');
+        }
+
+        // Eager Loading user with assements
+        $user = User::with('assessments')->findOrFail($user_id);
+
+        if(!$user){
+            return redirect()->route('show.user.login')->withErrors('Some unknown error occurred');
+        }
+
+        return view('pages.user.dashboard', compact('user'));
     }
 
     public function showRegister(){

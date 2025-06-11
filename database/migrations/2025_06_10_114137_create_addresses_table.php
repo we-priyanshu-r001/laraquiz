@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assessments', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('addresses', function (Blueprint $table) {
+            $table->id();
             $table->uuid('user_id');
-            $table->string('title');
-            $table->json('assessment')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('pin')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assessments');
+        Schema::dropIfExists('addresses');
     }
 };

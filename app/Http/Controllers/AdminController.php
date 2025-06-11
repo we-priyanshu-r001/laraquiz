@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        $users = User::where('role', 'not like', 'admin')->get();
+        // Eager Loading Users with their address from addresses table
+        $users = User::where('role', 'not like', 'admin')->with('address')->get();
         return view('pages.adminDashboard', compact('users'));
     }
 }

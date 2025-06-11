@@ -8,7 +8,7 @@
 
     <!-- Navigation Links -->
     <div class="hidden md:flex md:items-center md:space-x-6">
-        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+        <a href="{{route('show.landing')}}" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
         <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
         <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
         @if(url()->current() == route('show.user.login'))
@@ -33,7 +33,7 @@
 
 <!-- Mobile Menu (hidden by default, shown via JavaScript) -->
 <div class="md:hidden hidden px-4 pb-4" id="mobile-menu">
-    <a href="#" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+    <a href="{{route('show.landing')}}" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Home</a>
     <a href="#" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">About</a>
     <a href="#" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
     @if(url()->current() == route('show.user.login'))
