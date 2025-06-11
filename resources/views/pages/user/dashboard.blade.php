@@ -14,7 +14,7 @@
             </div>
             <!-- Create New Assessment Button -->
             <button class="w-full sm:w-1/3 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ease-in-out shadow-md">
-                Create New Assessment
+                <a href="{{route('show.assessment.create')}}">Create New Assessment</a>
             </button>
         </div>
 

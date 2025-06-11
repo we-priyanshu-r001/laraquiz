@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\FlushSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\AllowIfAdmin;
 use App\Http\Middleware\CustomAuth;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Models\Assessment;
 
 // Landing Page Route
 Route::get('/', LandingController::class)->name('show.landing')->middleware(RedirectIfAuthenticated::class);
@@ -22,7 +24,24 @@ Route::prefix('user')->group(function(){
     Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 });
 
+// Assessment Routes
+Route::prefix('assessment')->group(function(){
+    Route::get('/create', [AssessmentController::class, 'showCreate'])->name('show.assessment.create');
+    Route::post('/create', [AssessmentController::class, 'create'])->name('assessment.create');
+});
+
+
+// Admin Routes
 Route::get('admin_dashboard', [AdminController::class, 'index'])->name('show.admin.dashboard')->middleware(AllowIfAdmin::class);
+
+
+
 
 // Dev Routes
 Route::get('/invalidate', FlushSessionController::class);
+
+Route::get('/many', function(){
+    $assessment = Assessment::first();
+    $assessment->categories()->attach(1);
+    dd($assessment);
+});

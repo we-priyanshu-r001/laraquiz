@@ -5,14 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assessment extends Model
 {
-    use HasUuids, HasFactory;
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'assessment',
+        'user_id',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 }
