@@ -5,7 +5,7 @@
     <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 w-full max-w-7xl flex space-x-6">
         
         <!-- Left Side: Assessments List -->
-        <div class="w-full md:w-2/3 space-y-4">
+        <div class="w-full md:w-2/3 space-y-4 flex-grow">
             <!-- Dashboard Header: Search Bar and Create Button -->
             <div class="flex flex-col sm:flex-row items-center justify-between mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
                 <!-- Search Bar -->
@@ -26,7 +26,7 @@
                 @foreach ($user->assessments as $assessment)
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm flex flex-col md:flex-row items-center justify-between border border-gray-200">
                         <div class="flex-grow mb-4 md:mb-0 text-center md:text-left">
-                            <h3 class="text-lg font-semibold text-gray-800">{{$assessment->title}}</h3>
+                            <h3 class="text-lg font-semibold text-gray-800 truncate" title="{{$assessment->title}}">{{$assessment->title}}</h3>
                             <p class="text-sm text-gray-600">{{$assessment->created_at}} | Questions: 0</p>
                         </div>
                         <div class="flex flex-wrap justify-center gap-3">
@@ -45,17 +45,32 @@
             </div>
         </div>
 
-        <!-- Right Side: Scrollable Category Card -->
-        <div class="w-full md:w-1/3 bg-gray-50 p-4 rounded-lg shadow-lg border border-gray-200">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Categories</h3>
+        <!-- Right Side: Categories and Questions Section (Equal Space) -->
+        <div class="w-full md:w-1/3 flex flex-col space-y-6">
             
-            <!-- Scrollable Category List -->
-            <div class="max-h-[400px] overflow-y-auto space-y-2">
-                @foreach ($categories as $category)
-                    <div class="bg-white p-3 rounded-lg shadow-sm hover:bg-gray-100 cursor-pointer"><a href="{{route('assessment.category', $category->id)}}">{{$category->title}}</a></div>
-                @endforeach
-                <!-- Add more categories as needed -->
+            <!-- Categories Section -->
+            <div class="flex-grow bg-gray-50 p-4 rounded-lg shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Categories</h3>
+                <div class="max-h-[400px] overflow-y-auto space-y-2 mb-6">
+                    @foreach ($categories as $category)
+                        <div class="bg-white p-3 rounded-lg shadow-sm hover:bg-gray-100 cursor-pointer"><a href="{{route('assessment.category', $category->id)}}">{{$category->title}}</a></div>
+                    @endforeach
+                </div>
             </div>
+
+            <!-- Questions Section -->
+            <div class="flex-grow bg-gray-50 p-4 rounded-lg shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Questions</h3>
+                <div class="max-h-[400px] overflow-y-auto space-y-3">
+                    @foreach ($questions as $question)
+                        <div class="bg-white p-3 rounded-lg shadow-sm hover:bg-gray-100">
+                            <p class="text-lg text-gray-800 font-semibold truncate" title="{{$question->title}}">{{$question->title}}</p>
+                            {{-- <p class="text-sm text-gray-600">{{$question->created_at}}</p> --}}
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

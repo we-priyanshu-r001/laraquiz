@@ -22,16 +22,15 @@ class UserController extends Controller
         // Eager Loading user with assements
         $user = User::with('assessments')->findOrFail($user_id);
 
+        $questions = $user->questions;
+
         $categories = Category::all();
-        // if(!$categories){
-        //     $categories = ['null'];
-        // }
 
         if(!$user){
             return redirect()->route('show.user.login')->withErrors('Some unknown error occurred');
         }
 
-        return view('pages.user.dashboard', compact('user', 'categories'));
+        return view('pages.user.dashboard', compact('user', 'categories', 'questions'));
     }
 
     public function showRegister(){

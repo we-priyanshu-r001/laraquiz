@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assessment extends Model
@@ -25,5 +25,9 @@ class Assessment extends Model
 
     public function categories(){
         return $this->belongsToMany(Category::class);
+    }
+
+    public function questions(){
+        return $this->hasMany(Question::class);
     }
 }

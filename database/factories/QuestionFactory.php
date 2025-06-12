@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Assessment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Assessment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
  */
-class AssessmentFactory extends Factory
+class QuestionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,9 @@ class AssessmentFactory extends Factory
     public function definition(): array
     {
         return [
+            'assessment_id' => Assessment::factory(),
             'title' => fake()->sentence,
-            'assessment' => fake()->text(),
-            'user_id' => User::factory()
+            'options' => fake()->text,
         ];
     }
 }

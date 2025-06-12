@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Address;
 use App\Models\Assessment;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function assessments() : HasMany
     {
         return $this->hasMany(Assessment::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasManyThrough(Question::class, Assessment::class);
     }
 }

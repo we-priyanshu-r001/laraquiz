@@ -8,7 +8,7 @@
     
     <!-- Assessments List -->
     <div class="w-full max-w-4xl space-y-6">
-        @foreach ($category->assessments as $assessment)
+        @forelse ($category->assessments as $assessment)
             <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition duration-200 ease-in-out">
                 <div class="flex flex-col sm:flex-row items-center justify-between">
                     <div class="flex-grow text-center sm:text-left">
@@ -28,7 +28,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p class="text-center text-gray-600">No assessment found for this category</p>
+        @endforelse
     </div>
 
 </div>
