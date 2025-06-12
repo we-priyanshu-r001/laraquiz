@@ -35,4 +35,10 @@ class AssessmentController extends Controller
         return redirect()->route('show.user.dashboard');
 
     }
+
+    public function overview($id){
+        $assessment = Assessment::find($id);
+        $comments = $assessment->comments;
+        return view('pages.assessment.overview', compact('comments'));
+    }
 }

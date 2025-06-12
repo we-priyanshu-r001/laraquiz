@@ -26,7 +26,9 @@
                 @foreach ($user->assessments as $assessment)
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm flex flex-col md:flex-row items-center justify-between border border-gray-200">
                         <div class="flex-grow mb-4 md:mb-0 text-center md:text-left">
-                            <h3 class="text-lg font-semibold text-gray-800 truncate" title="{{$assessment->title}}">{{$assessment->title}}</h3>
+                            <a href="{{route('show.assessment.overview', $assessment->id)}}">
+                                <h3 class="text-lg font-semibold text-gray-800 truncate" title="{{$assessment->title}}">{{$assessment->title}}</h3>
+                            </a>
                             <p class="text-sm text-gray-600">{{$assessment->created_at}} | Questions: 0</p>
                         </div>
                         <div class="flex flex-wrap justify-center gap-3">

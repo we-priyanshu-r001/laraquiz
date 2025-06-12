@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Question;
 use App\Models\Module;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assessment extends Model
@@ -34,5 +35,9 @@ class Assessment extends Model
 
     public function modules(){
         return $this->belongsToMany(Module::class);
+    }
+
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

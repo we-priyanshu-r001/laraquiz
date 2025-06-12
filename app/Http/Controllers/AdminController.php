@@ -16,8 +16,8 @@ class AdminController extends Controller
 
     public function module($id){
         $module = Module::find($id);
+        $comments = $module->comments;
         $questions = $module->questions;
-        // dd($questions);
-        return view('pages.module', compact('questions', 'module'));
+        return view('pages.module', compact('questions', 'module', 'comments'));
     }
 }

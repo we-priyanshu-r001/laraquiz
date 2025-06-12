@@ -29,6 +29,7 @@ Route::prefix('user')->group(function(){
 Route::prefix('assessment')->group(function(){
     Route::get('/create', [AssessmentController::class, 'showCreate'])->name('show.assessment.create');
     Route::post('/create', [AssessmentController::class, 'create'])->name('assessment.create');
+    Route::get('/overview/{id}', [AssessmentController::class, 'overview'])->name('show.assessment.overview');
 });
 
 
