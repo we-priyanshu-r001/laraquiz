@@ -4,11 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\Assessment;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Module;
 use App\Models\Question;
+use App\Models\Tag;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,9 +25,20 @@ class DatabaseSeeder extends Seeder
         //     $user->address()->save(Address::factory()->make());
         // });
 
-        $modules = Module::factory()->count(5)->has(Comment::factory(2))->create();
+        // $tags = Tag::factory(5)->create();
 
-        User::factory(10)->has(Address::factory())->has(Assessment::factory(5)->has(Question::factory(2))->has(Comment::factory(2))->hasAttached($modules))->create();
+        $categories = Category::factory(10)->create();
+
+        $modules = Module::factory(5)->has(Comment::factory(2))->hasAttached($categories)->create();
+
+        User::factory(10)
+            ->has(Address::factory())
+            ->has(Assessment::factory(5)
+            ->has(Question::factory(2))
+            ->has(Comment::factory(2))
+            ->hasAttached($modules)
+            ->hasAttached($categories))
+            ->create();
 
         User::factory()->create([
             'name' => 'Test User',
@@ -36,7 +48,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
            AdminSeeder::class,
-           CategorySeeder::class,
         ]);
     }
 }

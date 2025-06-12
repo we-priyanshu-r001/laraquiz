@@ -55,7 +55,7 @@
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Categories</h3>
                 <div class="max-h-[400px] overflow-y-auto space-y-2 mb-6">
                     @foreach ($categories as $category)
-                        <div class="bg-white p-3 rounded-lg shadow-sm hover:bg-gray-100 cursor-pointer"><a href="{{route('assessment.category', $category->id)}}">{{$category->title}}</a></div>
+                        <div class="bg-white p-3 rounded-lg shadow-sm hover:bg-gray-100 cursor-pointer"><a href="{{route('show.assessment.category', $category->id)}}">{{$category->title}}</a></div>
                     @endforeach
                 </div>
             </div>

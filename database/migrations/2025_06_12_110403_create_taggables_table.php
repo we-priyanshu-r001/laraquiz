@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assessment_category', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('assessment_id');
-            $table->integer('category_id');
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->unsignedBigInteger('tag_id');
+            $table->morphs('taggable');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assessment_category');
+        Schema::dropIfExists('taggables');
     }
 };

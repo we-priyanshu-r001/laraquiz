@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assessment;
 use App\Models\Category;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class AssessmentController extends Controller
 {
@@ -38,7 +36,14 @@ class AssessmentController extends Controller
 
     public function overview($id){
         $assessment = Assessment::find($id);
+        dd($assessment->categories);
         $comments = $assessment->comments;
         return view('pages.assessment.overview', compact('comments'));
+    }
+
+    public function category($id){
+        $category = Category::find($id);
+        $assessments = $category->assessments;
+        return view('pages.assessment.category', compact('assessments', 'category'));
     }
 }

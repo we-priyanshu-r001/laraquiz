@@ -7,6 +7,7 @@ use App\Models\Assessment;
 use App\Models\QB;
 use App\Models\Question;
 use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Module extends Model
@@ -30,6 +31,10 @@ class Module extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function categories(){
+        return $this->morphToMany(Category::class, 'categorisable');
     }
 
 }

@@ -30,6 +30,7 @@ Route::prefix('assessment')->group(function(){
     Route::get('/create', [AssessmentController::class, 'showCreate'])->name('show.assessment.create');
     Route::post('/create', [AssessmentController::class, 'create'])->name('assessment.create');
     Route::get('/overview/{id}', [AssessmentController::class, 'overview'])->name('show.assessment.overview');
+    Route::get('/category/{id}', [AssessmentController::class, 'category'])->name('show.assessment.category');
 });
 
 
@@ -38,12 +39,12 @@ Route::get('admin_dashboard', [AdminController::class, 'index'])->name('show.adm
 Route::get('/module/{id}', [AdminController::class, 'module'])->name('show.module');
 
 // Category Routes
-Route::get('/category/{id}', function($id){
+// Route::get('/category/{id}', function($id){
 
-    $category = Category::with('assessments')->findOrFail($id);
-    return view('pages.assessment.category', compact('category'));
+//     $category = Category::with('assessments')->findOrFail($id);
+//     return view('pages.assessment.category', compact('category'));
 
-})->name('assessment.category');
+// })->name('assessment.category');
 
 
 
