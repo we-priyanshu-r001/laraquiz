@@ -36,7 +36,7 @@ class AssessmentController extends Controller
 
     public function overview($id){
         $assessment = Assessment::find($id);
-        dd($assessment->categories);
+        // dd($assessment->categories);
         $comments = $assessment->comments;
         return view('pages.assessment.overview', compact('comments'));
     }
