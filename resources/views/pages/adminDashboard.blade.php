@@ -10,6 +10,18 @@
             <p class="text-gray-600">View, edit, and manage all registered users.</p>
         </div>
 
+         <!-- Modules Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Modules</h3>
+            <div class="flex overflow-x-auto space-x-4 pb-2">
+                @foreach ($modules as $module)
+                    <a href="{{ route('show.module', $module->id) }}" class="flex-shrink-0 w-48 h-32 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-md flex items-center justify-center text-center text-gray-800 font-semibold transition-all duration-200 ease-in-out">
+                        <span>{{ $module->title }}</span>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
         <!-- Toolbar -->
         <div class="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <!-- Search Bar -->
@@ -38,7 +50,7 @@
         </div>
 
         <!-- Users Table -->
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg mb-6">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
@@ -81,7 +93,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
 @endsection
-

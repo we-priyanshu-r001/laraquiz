@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Question;
+use App\Models\Module;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assessment extends Model
@@ -29,5 +30,9 @@ class Assessment extends Model
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+
+    public function modules(){
+        return $this->belongsToMany(Module::class);
     }
 }

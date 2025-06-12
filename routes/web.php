@@ -34,7 +34,7 @@ Route::prefix('assessment')->group(function(){
 
 // Admin Routes
 Route::get('admin_dashboard', [AdminController::class, 'index'])->name('show.admin.dashboard')->middleware(AllowIfAdmin::class);
-
+Route::get('/module/{id}', [AdminController::class, 'module'])->name('show.module');
 
 // Category Routes
 Route::get('/category/{id}', function($id){

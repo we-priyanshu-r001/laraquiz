@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\Assessment;
+use App\Models\Module;
 use App\Models\Question;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,7 +23,9 @@ class DatabaseSeeder extends Seeder
         //     $user->address()->save(Address::factory()->make());
         // });
 
-        User::factory(10)->has(Address::factory())->has(Assessment::factory(5)->has(Question::factory(2)))->create();
+        $modules = Module::factory()->count(5)->create();
+
+        User::factory(10)->has(Address::factory())->has(Assessment::factory(5)->has(Question::factory(2))->hasAttached($modules))->create();
 
         User::factory()->create([
             'name' => 'Test User',
