@@ -9,8 +9,8 @@ trait TimeAgoTrait {
     public function timeAgo($value)
     {
         
-        $timestamp = $timestamp ?? $this->created_at;
+        // $timestamp = $timestamp ?? $this->created_at;
         
-        return Carbon::parse($timestamp)->diffForHumans();
+        return Carbon::parse($value)->diffForHumans();
     }
 }

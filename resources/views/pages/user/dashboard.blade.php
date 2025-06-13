@@ -29,7 +29,7 @@
                             <a href="{{route('show.assessment.overview', $assessment->id)}}">
                                 <h3 class="text-lg font-semibold text-gray-800 truncate" title="{{$assessment->title}}">{{$assessment->title}}</h3>
                             </a>
-                            <p class="text-sm text-gray-600">{{$assessment->timeAgo($assessment->created_at)}} | Questions: 0</p>
+                            <p class="text-sm text-gray-600">{{$assessment->created_at}} | Questions: 0</p>
                         </div>
                         <div class="flex flex-wrap justify-center gap-3">
                             <button class="bg-indigo-500 text-white text-sm py-1.5 px-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-200 ease-in-out">

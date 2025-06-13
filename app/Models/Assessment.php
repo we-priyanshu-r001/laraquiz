@@ -58,9 +58,9 @@ class Assessment extends Model
         );
     }
 
-    // protected function created_at(): Attribute {
-    //     return Attribute::make(
-    //         get: fn($value) => '22',
-    //     );
-    // }
+    protected function createdAt(): Attribute {
+        return Attribute::make(
+            get: fn($value) => $this->timeAgo($value),
+        );
+    }
 }
