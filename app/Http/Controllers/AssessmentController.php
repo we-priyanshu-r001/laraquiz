@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AssessmentCreated;
 use App\Models\Assessment;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -28,6 +29,12 @@ class AssessmentController extends Controller
             'user_id' => session()->get('user_id')
         ]);
 
+        // dd($assessment->id);
+
+        AssessmentCreated::dispatch($assessment);
+
+        // event(new AssessmentCreated($assessment));
+        
         $assessment->categories()->attach($validated['category']);
 
         return redirect()->route('show.user.dashboard');
