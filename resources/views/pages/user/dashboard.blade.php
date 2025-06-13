@@ -23,13 +23,13 @@
 
             <!-- Assessments List -->
             <div class="space-y-4">
-                @foreach ($user->assessments as $assessment)
+                @foreach ($assessments as $assessment)
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm flex flex-col md:flex-row items-center justify-between border border-gray-200">
                         <div class="flex-grow mb-4 md:mb-0 text-center md:text-left">
                             <a href="{{route('show.assessment.overview', $assessment->id)}}">
                                 <h3 class="text-lg font-semibold text-gray-800 truncate" title="{{$assessment->title}}">{{$assessment->title}}</h3>
                             </a>
-                            <p class="text-sm text-gray-600">{{$assessment->created_at}} | Questions: 0</p>
+                            <p class="text-sm text-gray-600">{{$assessment->timeAgo($assessment->created_at)}} | Questions: 0</p>
                         </div>
                         <div class="flex flex-wrap justify-center gap-3">
                             <button class="bg-indigo-500 text-white text-sm py-1.5 px-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-200 ease-in-out">

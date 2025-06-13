@@ -8,13 +8,14 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\Module;
 use App\Models\Comment;
+use App\Traits\TimeAgoTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 class Assessment extends Model
 {
-    use HasFactory;
+    use HasFactory, TimeAgoTrait;
 
     protected $fillable = [
         'title',
@@ -22,12 +23,12 @@ class Assessment extends Model
         'user_id',
     ];
 
-    protected function casts() : array
-    {
-        return [
-            'created_at' => 'datetime'
-        ];
-    }
+    // protected function casts() : array
+    // {
+    //     return [
+    //         'created_at' => 'datetime'
+    //     ];
+    // }
 
     public function user()
     {
@@ -56,4 +57,10 @@ class Assessment extends Model
             set: fn($value) => Str::title($value)
         );
     }
+
+    // protected function created_at(): Attribute {
+    //     return Attribute::make(
+    //         get: fn($value) => '22',
+    //     );
+    // }
 }

@@ -20,7 +20,9 @@ class UserController extends Controller
         }
 
         // Eager Loading user with assements
-        $user = User::with('assessments')->findOrFail($user_id);
+        $user = User::find($user_id);
+
+        $assessments = $user->assessments;
 
         $questions = $user->questions;
 
@@ -30,7 +32,7 @@ class UserController extends Controller
             return redirect()->route('show.user.login')->withErrors('Some unknown error occurred');
         }
 
-        return view('pages.user.dashboard', compact('user', 'categories', 'questions'));
+        return view('pages.user.dashboard', compact('assessments', 'categories', 'questions'));
     }
 
     public function showRegister(){
