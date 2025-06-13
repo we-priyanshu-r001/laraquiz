@@ -3,11 +3,26 @@
 @section('body_content')
 <div class="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
-
+        
         <!-- Page Heading -->
         <div class="mb-6 text-center">
             <h1 class="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
             <p class="text-gray-600">View, edit, and manage all registered users.</p>
+        </div>
+        
+        <div class="flex space-x-5 justify-center mb-2">
+            <div class="flex overflow-x-auto space-x-4 pb-2">
+                    <div class="flex-shrink-0 flex-col w-48 h-32 bg-red-400 hover:bg-red-500 rounded-lg shadow-md flex items-center justify-center text-center text-gray-800 font-semibold transition-all duration-200 ease-in-out">
+                        <span class="text-6xl">{{$statusCount['pending']}}</span>
+                        <span>Pending</span>
+                    </div>
+            </div>
+            <div class="flex overflow-x-auto space-x-4 pb-2">
+                    <div class="flex-shrink-0 flex-col w-48 h-32 bg-green-400 hover:bg-green-500 rounded-lg shadow-md flex items-center justify-center text-center text-gray-800 font-semibold transition-all duration-200 ease-in-out">
+                        <span class="text-6xl">{{$statusCount['approved']}}</span>
+                        <span>Approved</span>
+                    </div>
+            </div>
         </div>
 
          <!-- Modules Section -->

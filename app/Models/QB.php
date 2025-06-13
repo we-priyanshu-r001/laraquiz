@@ -13,7 +13,7 @@ class QB extends Pivot
         'module_id'
     ];
 
-    // public function questions(){
-    //     $this->hasManyThrough(Question::class, Assessment::class, )
-    // }
+    public function questions(){
+        $this->hasManyThrough(Question::class, Assessment::class, );
+    }
 }
